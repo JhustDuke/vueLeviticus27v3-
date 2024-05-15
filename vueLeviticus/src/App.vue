@@ -4,62 +4,65 @@
 		<section
 			class="content h-75 w-75 p-4 border border-1 rounded-3 shadow-lg white">
 			<header class="h4 text-uppercase"> leviticus 27.... </header>
-			<div
-				class="lh-base fw-normal"
-				style="font-size: 12px !important">
-				these are the requirements for when a
-				<span>
-					<select
-						v-model="gender"
-						class="fw-bold red-text text-darken-2"
-						style="
-							outline: 1px solid;
-
-							background-color: transparent !important;
-							border: none !important;
-						">
-						<option
-							class="op"
-							value="Man/male"
-							selected
-							>Male</option
-						>
-						<option value="Female">Female</option>
+			<p>
+				These are the requirements for when a 
+				<div class="inline me-1">
+					<select name="" id="" class="red-text text-darken 2 p-1" v-model="gender">
+						<option value="Male">Male</option>
+						<option value="female">female</option>
 					</select>
-				</span>
-				shall make a singular vow, the persons shall be for the Lord by thy
-				estimation. 3. And thy estimation shall be of the
-				<span class="red-text fw-bold text-darken-2">{{ gender }}</span> from
-				<span>
-					age
-					<input
-						type="number"
-						v-model="age" />
-				</span>
-				to age
-				<span>
-					<input
-						type="number"
-						v-model="model" />
-				</span>
-			</div>
+
+				</div>
+				who is aged 
+					<div class="inline mt-1">
+						<input type="number" name="" id="number" value='0' class="red-text text-darken-2 " v-model="age">
+
+					</div>
+				shall make a singular vow unto the lord
+			</p>
+			<!-- line break -->
+					<p class="w-100 my-1"><hr></p>
+					
+					
+					<!-- the output -->
+				<div class="grey lighten-2 p-1 ">
+					{{ requirements }}
+					
+				</div>
 		</section>
 	</main>
 </template>
 
 <script>
+import {isMale} from './utils/isMale'
+import {isFemale} from './utils/isFemale'
 	export default {
 		data() {
 			return {
 				gender: "Male",
-				age: 0,
-				max: "",
+				age: 20,
+				requirements:'place-holder test'
 			};
 		},
+		watch: { 
+			gender(val){
+			if(val.toLowerCase()==='male'){
+				this.requirements=isMale(this.age)
+			}
+			else if (val.toLowerCase()==='female'){
+				this.requirements=isFemale(this.age)
+			}
+		},
+		
+},
+created(){
+	this.requirements=isMale(this.age)
+}
+		
 	};
 </script>
 
-<style>
+<style scoped>
 	/* Apply Flexbox styles to center the content */
 	.container {
 		display: flex;
@@ -74,4 +77,26 @@
 		color: black;
 		/* Add styling for your content here */
 	}
+	.inline{
+		display:inline-block !important;
+	}
+	.inline:nth-of-type(2){
+		border-radius: 30px !important;
+
+	}
+
+
+ select{
+	outline:.05px solid;
+	background: transparent;
+	border:none;
+ }
+
+ #number{
+	background-color: transparent;
+	border: none;
+	border-bottom: .5px solid;
+	
+	max-width: fit-content;
+ }
 </style>
