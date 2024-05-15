@@ -41,7 +41,7 @@ import {isFemale} from './utils/isFemale'
 			return {
 				gender: "Male",
 				age: 20,
-				requirements:'place-holder test'
+				requirements:"fallback text"
 			};
 		},
 		watch: { 
@@ -53,6 +53,9 @@ import {isFemale} from './utils/isFemale'
 				this.requirements=isFemale(this.age)
 			}
 		},
+		age(val){
+			isMale(this.age)
+		}
 		
 },
 created(){
