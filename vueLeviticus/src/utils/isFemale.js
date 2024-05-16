@@ -11,7 +11,7 @@ export function isFemale(age = 0) {
 			"the lord says your requirements is 10 Shekels of silver as a female";
 	}
 	// 0-5years
-	else if (age <= 0 && age <= 5) {
+	else if (age < 0 || age < 5) {
 		message =
 			"the lord says your requirements is 3 Shekels of silver as a female";
 	}

@@ -53,9 +53,18 @@ import {isFemale} from './utils/isFemale'
 				this.requirements=isFemale(this.age)
 			}
 		},
-		age(val){
-			isMale(this.age)
+		age(){
+			if(this.gender.toLowerCase()==='female'){
+				this.requirements=isFemale(this.age)
+			}
+			else if(this.gender.toLowerCase()==='male'){
+				this.requirements=isMale(this.age)
+
+			}
+			
+			
 		}
+
 		
 },
 created(){
